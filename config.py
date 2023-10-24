@@ -18,6 +18,8 @@ def init(app):
     except Exception as e:
         print ("Could not read configs from: ", config_location)
         print ("Error details: ", e)
+        
+init(app)
 
 @app.route('/')
 def root():
@@ -27,9 +29,9 @@ def root():
 def config():
     s = []
     s.append('debug:' + str(app.config['DEBUG']))
-    s.append('port:' + str(app.config['port']))
-    s.append('url:' + str(app.config['url']))
-    s.append('ip_address:' + str(app.config['ip_address']))
+    s.append('port:' + app.config['port'])
+    s.append('url:' + app.config['url'])
+    s.append('ip_address:' + app.config['ip_address'])
     
     return ', '.join(s)
 
